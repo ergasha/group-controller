@@ -1,4 +1,4 @@
-BOT_TOKEN = '5055641557:AAEri5_JeqIbvWzNAGYoArOIeqRGQutXby8'
+BOT_TOKEN = '5036820264:AAHYMHKhmSQnvV5sx8jWzAgLw1lbUh-LBSY'
 from utils.db_api.sqlite import db
 
 admins = db.select_all_adminss()
