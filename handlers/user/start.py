@@ -78,7 +78,8 @@ async def send_subscription_prompt(chat_id: int, user_id: int, user_name: str):
 async def handle_banned_words_or_links(message: types.Message):
     text = message.text.lower()
     chat_id = message.chat.id
-    if message.sender_chat and message.sender_chat.id == -1001367202452:
+    if message.sender_chat and message.sender_chat.id == int('-1001367202452'):
+        print(message.sender_chat.id)
         return
     if any(keyword in text for keyword in BAN_KEYWORDS) or "http" in text or "@" in text:
         await bot.delete_message(chat_id=chat_id, message_id=message.message_id)
