@@ -105,7 +105,7 @@ async def handle_group_message(message: types.Message):
     chat_id = message.chat.id
     user_id = message.from_user.id
     user_name = message.from_user.first_name
-
+    admins = ["administrator", "creator"]
     # 1. Check if the user is subscribed to required channels
     if not message.sender_chat and not await is_user_in_channels(user_id):
         await bot.delete_message(chat_id=chat_id, message_id=message.message_id)
@@ -113,9 +113,10 @@ async def handle_group_message(message: types.Message):
         await send_subscription_prompt(chat_id, user_id, user_name)
         return  # Exit after asking for subscription
 
-    # 2. Check if the user is an admin or owner
+
     user_status = await bot.get_chat_member(chat_id=chat_id, user_id=user_id)
-    if user_status.status in ["administrator", "creator"]:
+    user_status2 = await bot.get_chat_member(chat_id=int('-1001367202452'), user_id=user_id)
+    if user_status.status in admins or user_status2.status in admins:
         # Skip further checks for admins/owners
         return
 
